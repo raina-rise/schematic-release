@@ -1,6 +1,7 @@
 site_name: raina-schematic
 site_url: https://raina-rise.github.io/schematic-release/
 nav:
+  - Home: index.md
   - Overview: overview.md
   - Quick Start: quick-start.md
   - API Reference: api.md
