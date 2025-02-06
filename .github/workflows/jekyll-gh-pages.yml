@@ -6,7 +6,7 @@ on:
       - main # 只在 main 分支更新时触发
 
 permissions:
-  contents: read
+  contents: write  # 允许写入 gh-pages 分支
   pages: write
   id-token: write
 
