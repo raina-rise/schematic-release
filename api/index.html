@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://raina-rise.github.io/schematic-release/api/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>API Reference - raina-schematic</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "API Reference";
+        var mkdocs_page_input_path = "api.md";
+        var mkdocs_page_url = "/schematic-release/api/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> raina-schematic
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Overview</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../quick-start/">Quick Start</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">API Reference</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">调用示例</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#edgeh">Edge.h</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#edge">Edge 类</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#graphh">Graph.h</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#graph">Graph 类</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#nodeh">Node.h</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#node">Node 类</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#nodeprotoh">NodeProto.h</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#nodeproto">NodeProto 类</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#porth">Port.h</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#port">Port 类</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">raina-schematic</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">API Reference</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="api">API 使用说明<a class="headerlink" href="#api" title="Permanent link">&para;</a></h1>
+<h2 id="_1">调用示例<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;schematic/include/Graph.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;schematic/include/LayeredEnginee.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;schematic/include/Node.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;schematic/include/NodeProto.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;schematic/include/Port.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;schematic/include/utils/VectorUtil.h&quot;</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">gui</span><span class="o">::</span><span class="n">protocol</span><span class="o">::</span><span class="n">Graph</span><span class="o">&gt;</span><span class="w"> </span><span class="n">runSchematic</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">gui</span><span class="o">::</span><span class="n">protocol</span><span class="o">::</span><span class="n">Graph</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">enginee</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">gui</span><span class="o">::</span><span class="n">protocol</span><span class="o">::</span><span class="n">LayeredEnginee</span><span class="o">&gt;</span><span class="p">(</span><span class="n">graph</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">protoId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">addNodeProto</span><span class="p">(</span><span class="s">&quot;nodeProtoName&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="n">protoId</span><span class="p">);</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">addPort</span><span class="p">(</span><span class="n">pinHN</span><span class="p">,</span><span class="w"> </span><span class="n">portId</span><span class="o">++</span><span class="p">,</span><span class="w"> </span><span class="n">gui</span><span class="o">::</span><span class="n">protocol</span><span class="o">::</span><span class="n">PortType</span><span class="o">::</span><span class="n">OUTPUT</span><span class="p">,</span><span class="w"> </span><span class="n">protoId</span><span class="p">);</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">addNode</span><span class="p">(</span><span class="n">nodeId</span><span class="o">++</span><span class="p">,</span><span class="w"> </span><span class="n">protoId</span><span class="p">,</span><span class="w"> </span><span class="n">cellHN</span><span class="p">,</span><span class="w"> </span><span class="n">gui</span><span class="o">::</span><span class="n">protocol</span><span class="o">::</span><span class="n">NodeSide</span><span class="o">::</span><span class="n">FIRST_SEPARATE</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">addEdge</span><span class="p">(</span><span class="n">outport</span><span class="p">.</span><span class="n">node</span><span class="p">,</span><span class="w"> </span><span class="n">outport</span><span class="p">.</span><span class="n">port</span><span class="p">,</span><span class="w"> </span><span class="n">inport</span><span class="p">.</span><span class="n">node</span><span class="p">,</span><span class="w"> </span><span class="n">inport</span><span class="p">.</span><span class="n">port</span><span class="p">,</span><span class="w"> </span><span class="n">netHandleName</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">enginee</span><span class="o">-&gt;</span><span class="n">layered</span><span class="p">();</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">enginee</span><span class="o">-&gt;</span><span class="n">getGraph</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="edgeh">Edge.h<a class="headerlink" href="#edgeh" title="Permanent link">&para;</a></h2>
+<h3 id="edge">Edge 类<a class="headerlink" href="#edge" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>构造函数</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">Edge</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">srcNode</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Port</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">srcPort</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">dstNode</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Port</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">dstPort</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>方法</strong>
+  <div class="highlight"><pre><span></span><code><span class="n">EdgeTarget</span><span class="w"> </span><span class="nf">getSrc</span><span class="p">();</span>
+<span class="n">EdgeTarget</span><span class="w"> </span><span class="nf">getDst</span><span class="p">();</span>
+<span class="n">EdgeTarget</span><span class="w"> </span><span class="nf">getOther</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">someNode</span><span class="p">);</span>
+<span class="n">EdgeTarget</span><span class="w"> </span><span class="nf">getOther</span><span class="p">(</span><span class="n">EdgeTarget</span><span class="w"> </span><span class="o">&amp;</span><span class="n">edgeTarget</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setSrc</span><span class="p">(</span><span class="n">EdgeTarget</span><span class="w"> </span><span class="o">&amp;</span><span class="n">nextSrc</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setDst</span><span class="p">(</span><span class="n">EdgeTarget</span><span class="w"> </span><span class="o">&amp;</span><span class="n">nextDst</span><span class="p">);</span>
+<span class="n">KVector</span><span class="w"> </span><span class="nf">getSrcPoint</span><span class="p">();</span>
+<span class="n">KVector</span><span class="w"> </span><span class="nf">getDstPoint</span><span class="p">();</span>
+<span class="n">KVectorChain</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getBendPoints</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Line</span><span class="o">&gt;</span><span class="w"> </span><span class="n">getLines</span><span class="p">();</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">countIntersections</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Edge</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">edge</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">KVector</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">getIntersections</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Edge</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">edge</span><span class="p">);</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">isInLayerEdge</span><span class="p">();</span>
+<span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="nf">json</span><span class="p">();</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">hidden</span><span class="p">();</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">show</span><span class="p">();</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">isReverse</span><span class="p">();</span>
+<span class="k">static</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">KVector</span><span class="o">&gt;</span><span class="w"> </span><span class="n">getIntersection</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Line</span><span class="w"> </span><span class="o">&amp;</span><span class="n">line1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Line</span><span class="w"> </span><span class="o">&amp;</span><span class="n">line2</span><span class="p">);</span>
+</code></pre></div></li>
+</ul>
+<h2 id="graphh">Graph.h<a class="headerlink" href="#graphh" title="Permanent link">&para;</a></h2>
+<h3 id="graph">Graph 类<a class="headerlink" href="#graph" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>构造函数</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">Graph</span><span class="p">();</span>
+</code></pre></div>
+<ul>
+<li><strong>方法</strong>
+  <div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">NodeProto</span><span class="o">&gt;</span><span class="w"> </span><span class="n">addNodeProto</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">NodeProto</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">nodeProto</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">NodeProto</span><span class="o">&gt;</span><span class="w"> </span><span class="n">addNodeProto</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">height</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">NodeProto</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getNodeProtos</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">NodeProto</span><span class="o">&gt;</span><span class="w"> </span><span class="n">getDummyNodeProto</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Port</span><span class="o">&gt;</span><span class="w"> </span><span class="n">addPort</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">PortType</span><span class="w"> </span><span class="n">portType</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">protoId</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Port</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getPorts</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Port</span><span class="o">&gt;</span><span class="w"> </span><span class="n">getPortById</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">updateAllPortPos</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="w"> </span><span class="n">addNode</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">node</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="w"> </span><span class="n">addNode</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">protoId</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="w"> </span><span class="n">addNode</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">protoId</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">NodeSide</span><span class="w"> </span><span class="n">side</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="w"> </span><span class="n">getNodeById</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">removeNode</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">node</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Edge</span><span class="o">&gt;</span><span class="w"> </span><span class="n">addEdge</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Edge</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">edge</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Edge</span><span class="o">&gt;</span><span class="w"> </span><span class="n">addEdge</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">srcNode</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Port</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">srcPort</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">dstNode</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Port</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">dstPort</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Edge</span><span class="o">&gt;</span><span class="w"> </span><span class="n">addEdge</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">srcNodeId</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">srcPortId</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">dstNodeId</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">dstPortId</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">removeEdge</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Edge</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">edge</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getNodes</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Edge</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getEdges</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Layer</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getLayers</span><span class="p">();</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">addLayers</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Layer</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">layer</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getLayerlessNodes</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getHiddenNodes</span><span class="p">();</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setHiddenNodes</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">nodes</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">toNodeArray</span><span class="p">();</span>
+<span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="nf">json</span><span class="p">();</span>
+</code></pre></div></li>
+</ul>
+<h2 id="nodeh">Node.h<a class="headerlink" href="#nodeh" title="Permanent link">&para;</a></h2>
+<h3 id="node">Node 类<a class="headerlink" href="#node" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>构造函数</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">explicit</span><span class="w"> </span><span class="n">Node</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">NodeProto</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">proto</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">_id</span><span class="p">);</span>
+<span class="n">Node</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">NodeProto</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">proto</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">_id</span><span class="p">,</span><span class="w"> </span><span class="n">NodeSide</span><span class="w"> </span><span class="n">side</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>方法</strong>
+  <div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">getId</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setId</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">NodeProto</span><span class="o">&gt;</span><span class="w"> </span><span class="n">getProto</span><span class="p">();</span>
+<span class="n">KVector</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">getSize</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Port</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getInputPorts</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Port</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getOutputPorts</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Port</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">getAllPorts</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Port</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getPortsByPortType</span><span class="p">(</span><span class="n">PortType</span><span class="w"> </span><span class="n">type</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">EdgeTarget</span><span class="o">&gt;</span><span class="w"> </span><span class="n">getConnectedPorts</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Port</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">port</span><span class="p">);</span>
+<span class="n">KVector</span><span class="w"> </span><span class="nf">getPortPos</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Port</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">port</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Edge</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">getEdges</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Edge</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">getIncomingEdges</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Edge</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">getOutgoingEdges</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Edge</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">getEdgesByPort</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Port</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">port</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">addEdge</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Port</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">port</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Edge</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">edge</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">removeEdge</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Port</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">port</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Edge</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">edge</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Layer</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getLayer</span><span class="p">();</span>
+<span class="n">NodeSide</span><span class="w"> </span><span class="nf">getSide</span><span class="p">();</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setSide</span><span class="p">(</span><span class="n">NodeSide</span><span class="w"> </span><span class="n">nextSide</span><span class="p">);</span>
+<span class="n">HiddenNodeConnections</span><span class="o">::</span><span class="n">Connection</span><span class="w"> </span><span class="nf">getHiddenNodeConnections</span><span class="p">();</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setHiddenNodeConnections</span><span class="p">(</span><span class="n">HiddenNodeConnections</span><span class="o">::</span><span class="n">Connection</span><span class="w"> </span><span class="o">&amp;</span><span class="n">connections</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setLayer</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Layer</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">layer</span><span class="p">);</span>
+<span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="nf">json</span><span class="p">();</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setDummy</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Edge</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">dummyOrigin</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setDummySource</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Port</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">dummySource</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setDummyTarget</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Port</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">dummyTarget</span><span class="p">);</span>
+</code></pre></div></li>
+</ul>
+<h2 id="nodeprotoh">NodeProto.h<a class="headerlink" href="#nodeprotoh" title="Permanent link">&para;</a></h2>
+<h3 id="nodeproto">NodeProto 类<a class="headerlink" href="#nodeproto" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>构造函数</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">NodeProto</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">height</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>方法</strong>
+  <div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Port</span><span class="o">&gt;</span><span class="w"> </span><span class="n">addPort</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">portName</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">PortType</span><span class="w"> </span><span class="n">portType</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">updatePortPos</span><span class="p">();</span>
+</code></pre></div></li>
+</ul>
+<h2 id="porth">Port.h<a class="headerlink" href="#porth" title="Permanent link">&para;</a></h2>
+<h3 id="port">Port 类<a class="headerlink" href="#port" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>构造函数</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">explicit</span><span class="w"> </span><span class="n">Port</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">_id</span><span class="p">,</span><span class="w"> </span><span class="n">PortType</span><span class="w"> </span><span class="n">portType</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>方法</strong>
+  <div class="highlight"><pre><span></span><code><span class="n">KVector</span><span class="w"> </span><span class="nf">getAnchor</span><span class="p">();</span>
+<span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="nf">json</span><span class="p">();</span>
+</code></pre></div></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../quick-start/" class="btn btn-neutral float-left" title="Quick Start"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../quick-start/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
