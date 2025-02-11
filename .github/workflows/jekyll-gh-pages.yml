@@ -1,27 +1,40 @@
-name: Deploy MkDocs to GitHub Pages
+name: Deploy VitePress to GitHub Pages
 
 on:
   push:
     branches:
-      - main # 只在 main 分支更新时触发
+      - main # 当 `main` 分支更新时触发
 
 permissions:
-  contents: write  # 允许写入 gh-pages 分支
+  contents: write
   pages: write
   id-token: write
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Install Python and MkDocs
-        run: |
-          python -m pip install --upgrade pip
-          pip install mkdocs-material
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18.20.6"
 
-      - name: Build and Deploy
+      - name: Install dependencies
         run: |
-          mkdocs gh-deploy --force
+          npm install
+
+      - name: Build the VitePress site
+        run: |
+          npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./.vitepress/dist
+          destination_branch: gh-pages
+          cname: raina-rise.github.io
