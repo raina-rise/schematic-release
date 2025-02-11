@@ -1,1 +1,0 @@
-import{_ as i,c as a,o as h,ae as k}from"./chunks/framework.Da8Wb08h.js";const g=JSON.parse('{"title":"API 使用说明","description":"","frontmatter":{},"headers":[],"relativePath":"api.md","filePath":"api.md"}'),t={name:"api.md"};function n(p,s,l,E,e,d){return h(),a("div",null,s[0]||(s[0]=[k("",18)]))}const y=i(t,[["render",n]]);export{g as __pageData,y as default};
