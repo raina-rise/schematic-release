@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   title: 'Raina Schematic',  
-  base: '/raina-schematic',
+  base: '/schematic-release',
   description: '大规模图形渲染工具', 
   srcDir: './docs',
   themeConfig: {
