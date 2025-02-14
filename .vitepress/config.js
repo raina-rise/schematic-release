@@ -7,9 +7,16 @@ export default defineConfig({
   description: "大规模图形渲染工具",
   srcDir: "./docs",
 
-  markdown: {
-    toc: { level: [1, 2, 3, 4] },
-  },
+  head: [
+    [
+      "script",
+      {
+        defer: true,
+        src: "https://cloud.umami.is/script.js",
+        "data-website-id": "ba17a46d-f73a-4436-b75c-3ca9559bb36a",
+      },
+    ],
+  ],
   themeConfig: {
     nav: [
       { text: "简介", link: "/overview" },
