@@ -1,0 +1,1 @@
+import{_ as s,c as a,o as p,ae as e}from"./chunks/framework.CWgCn7-Z.js";const u=JSON.parse('{"title":"模板文件","description":"","frontmatter":{},"headers":[],"relativePath":"doc/temp.md","filePath":"doc/temp.md"}'),l={name:"doc/temp.md"};function i(t,n,o,c,d,r){return p(),a("div",null,n[0]||(n[0]=[e("",8)]))}const g=s(l,[["render",i]]);export{u as __pageData,g as default};
