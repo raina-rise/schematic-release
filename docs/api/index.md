@@ -1,14 +1,16 @@
 # API 文档
 
-## 概述
+## Graph.h
+
+### 概述
 
 `Graph` 类管理节点和边的关系，所有操作都可以基于这个类完成
 
-## 类
+### 命名空间
 
-### `gui::protocol::Graph`
+- `gui::protocol`
 
-#### 公共成员函数
+### 公共成员函数
 
 - `Graph()`
   - 构造函数。
@@ -181,3 +183,129 @@
   - 以 `JSON` 形式输出数据。
   - 返回:
     - `JSON` 数据。
+
+
+## LayeredEngine.h
+
+### 概述
+
+此文件包含 `LayeredEngine` 类及其相关结构体的定义，用于符号库数据和布局算法。
+
+### 命名空间
+
+- `gui::protocol`
+
+### 结构体
+
+#### SymbolPortItem
+
+符号库数据的端口结构体。
+
+##### 成员变量
+
+- `std::string name`  
+  端口名称
+- `float x`  
+  端口 x 坐标
+- `float y`  
+  端口 y 坐标
+
+##### 构造函数
+
+```cpp
+SymbolPortItem(std::string name, float x, float y);
+```
+
+- `name`  
+  端口名称
+- `x`  
+  端口 x 坐标
+- `y`  
+  端口 y 坐标
+
+#### SymbolItem
+
+符号库数据结构体。
+
+##### 成员变量
+
+- `std::string name`  
+  符号名称
+- `float width`  
+  符号宽度
+- `float height`  
+  符号高度
+- `std::vector<SymbolPortItem> ports`  
+  符号端口列表
+
+##### 构造函数
+
+```cpp
+explicit SymbolItem(std::string name, float width, float height);
+```
+
+- `name`  
+  符号名称
+- `width`  
+  符号宽度
+- `height`  
+  符号高度
+
+### 类
+
+#### LayeredEngine
+
+算法引擎类。
+
+##### 成员函数
+
+```cpp
+explicit LayeredEngine(const std::shared_ptr<Graph> &graph);
+```
+
+- `graph`  
+  图形对象的共享指针
+
+```cpp
+explicit LayeredEngine(const std::filesystem::path &path);
+```
+
+- `path`  
+  文件路径
+
+```cpp
+void layered();
+```
+
+启动布局算法。
+
+```cpp
+nlohmann::json printJson(const std::filesystem::path &path);
+```
+
+- `path`  
+  文件路径
+
+返回 JSON 数据。
+
+```cpp
+std::shared_ptr<Graph> getGraph();
+```
+
+返回图形对象的共享指针。
+
+```cpp
+std::vector<SymbolItem> getSymbols(const std::filesystem::path &path);
+```
+
+- `path`  
+  文件路径
+
+返回符号列表。
+
+##### 成员变量
+
+- `std::shared_ptr<Graph> graph`  
+  图形对象的共享指针
+- `std::unordered_map<std::shared_ptr<Node>, int> layer`  
+  节点层级映射
