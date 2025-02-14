@@ -1,1 +1,0 @@
-import{_ as e,c as d,o as c,ae as t}from"./chunks/framework.CWgCn7-Z.js";const N=JSON.parse('{"title":"核心数据类型","description":"","frontmatter":{},"headers":[],"relativePath":"doc/data.md","filePath":"doc/data.md"}'),r={name:"doc/data.md"};function a(P,o,p,i,l,n){return c(),d("div",null,o[0]||(o[0]=[t("",18)]))}const h=e(r,[["render",a]]);export{N as __pageData,h as default};
