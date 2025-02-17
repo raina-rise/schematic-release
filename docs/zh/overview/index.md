@@ -6,7 +6,7 @@
 
 `raina-schematic` 的目标是接受 **不具备位置信息** 的原始数据后，根据连接关系，生成足以描述出如下视图的数据:
 
-![demo](../img/demo.png)
+![demo](../../img/demo.png)
 
 其中必要的原始数据包括 `节点(Node)`, `端口(Port)`, `连接(Edge)`。 
 

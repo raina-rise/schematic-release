@@ -18,27 +18,57 @@ export default defineConfig({
     ],
   ],
   themeConfig: {
-    nav: [
-      { text: "简介", link: "/overview" },
-      { text: "使用文档", link: "/doc" },
-      { text: "API 列表", link: "/api" },
-    ],
-    sidebar: {
-      "/overview": [
-        { text: "项目简介", link: "/overview/index" },
-        { text: "实现原理", link: "/overview/design" },
-      ],
-      "/doc": [
-        { text: "快速开始", link: "/doc/index" },
-        { text: "核心数据类型", link: "/doc/data" },
-        { text: "模板文件", link: "/doc/temp" },
-      ],
-    },
-    outline: {
-      label: "目录", // 自定义 TOC 标题
-    },
     footer: {
       message: "Raina Schematic.",
+    },
+    search: {
+      provider: "local",
+    },
+  },
+  locales: {
+    root: {
+      label: "简体中文",
+      lang: "zh",
+      link: "/zh/",
+      themeConfig: {
+        nav: [
+          { text: "简介", link: "/zh/overview" },
+          { text: "API 列表", link: "/zh/api" },
+        ],
+        sidebar: {
+          "/zh/overview": [
+            { text: "项目简介", link: "/zh/overview/index" },
+            { text: "快速开始", link: "/zh/overview/quick-start" },
+            { text: "核心数据类型", link: "/zh/overview/data" },
+            { text: "模板文件", link: "/zh/overview/temp" },
+          ],
+        },
+        outline: {
+          label: "目录", // 自定义 TOC 标题
+        },
+      },
+    },
+    en: {
+      label: "English",
+      lang: "en",
+      link: "/en/",
+      themeConfig: {
+        nav: [
+          { text: "Overview", link: "/en/overview" },
+          { text: "API Reference", link: "/en/api" },
+        ],
+        sidebar: {
+          "/en/overview": [
+            { text: "Overview", link: "/en/overview/index" },
+            { text: "Quick Start", link: "/en/overview/quick-start" },
+            { text: "Core Data Types", link: "/en/overview/data" },
+            { text: "Template Files", link: "/en/overview/temp" },
+          ],
+        },
+        outline: {
+          label: "Table of Contents", // 自定义 TOC 标题
+        },
+      },
     },
   },
 });

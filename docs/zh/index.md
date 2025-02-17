@@ -9,10 +9,10 @@ hero:
   actions:
     - theme: alt
       text: 什么是 Raina Schematic?
-      link: /overview/
+      link: ./overview/
     - theme: alt
       text: 快速开始
-      link: /doc/
+      link: ./doc/
     - theme: alt
       text: GitHub
       link: "https://github.com/raina-rise/schematic-release"

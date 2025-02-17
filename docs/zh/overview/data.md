@@ -4,7 +4,7 @@
 
 若有如下图的数据需要被创建:
 
-![relate-demo](../img/relate-demo.jpg)
+![relate-demo](../../img/relate-demo.jpg)
 
 假设图中 4 个元器件共分为三种类型，其中 B、C 是同一类型的。
 
