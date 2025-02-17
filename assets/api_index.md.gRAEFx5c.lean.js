@@ -1,1 +1,0 @@
-import{_ as e,c as d,o as l,ae as o}from"./chunks/framework.CWgCn7-Z.js";const k=JSON.parse('{"title":"API 文档","description":"","frontmatter":{},"headers":[],"relativePath":"api/index.md","filePath":"api/index.md"}'),t={name:"api/index.md"};function s(a,i,c,h,p,r){return l(),d("div",null,i[0]||(i[0]=[o("",48)]))}const g=e(t,[["render",s]]);export{k as __pageData,g as default};
